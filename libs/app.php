@@ -12,10 +12,10 @@ class App
     if ($_SESSION['katari']) {
       if (empty($url[0])) {
 
-        $archivoController = "controller/dashboard.php";
+        $archivoController = "controller/registro.php";
         require_once $archivoController;
-        $controller = new Dashboard();
-        $controller->loadModel('dashboard');
+        $controller = new registro();
+        $controller->loadModel('registro');
         $controller->render();
         return false;
       }
