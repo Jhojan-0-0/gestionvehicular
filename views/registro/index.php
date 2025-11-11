@@ -93,5 +93,9 @@
 }
 </style>
   <script src="<?php echo constant('URL') ?>public/js/registro.js"></script> 
+  <script>
+    // Exponer la URL base de la aplicación al JS para construir endpoints relativos
+    var BASE_URL = "<?php echo constant('URL') ?>";
+  </script>
   <br>
 <?php require('views/footer.php'); ?>
