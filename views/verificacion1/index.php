@@ -8,58 +8,43 @@
 	</div>
 
 	<!-- Formulario principal -->
-	<form action="<?php echo constant('URL') ?>proyectos/cd" 
-			method="POST" 
-			enctype="multipart/form-data" 
-			class="tarea callout shadow" 
-			id="signar-tareas">
-
-		<div class="grid-x grid-padding-x">
-
-		<!-- DNI -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="dni">DNI
-			<input type="text" id="dni" name="dni">
-			</label>
+<form class="verificacion1 callout" method="post" id="formPersonal">
+		<div class="row">
+		<div class="col-md-4">
+			<label>DNI</label>
+			<input type="text" id="dni" name="dni" class="form-control" placeholder="Ingrese DNI" maxlength="8" required>
+			<input type="hidden" id="idpersonal" name="idpersonal">
 		</div>
-
-		<!-- Apellidos -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="apellidos">Apellidos
-			<input type="text" name="apellidos" id="apellidos" placeholder="Ingrese apellidos"readonly>
-			</label>
+		<div class="col-md-4">
+			<label>Nombre</label>
+			<input type="text" id="nombre" name="nombre" class="form-control" disabled>
 		</div>
-
-		<!-- Nombre -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="nombre">Nombre
-			<input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre completo" readonly>
-			</label>
+		<div class="col-md-4">
+			<label>Apellido</label>
+			<input type="text" id="apellido" name="apellido" class="form-control" disabled>
 		</div>
-
-		<!-- Placa -->
+		<div class="col-md-4">
+			<label>Categoría Licencia</label>
+			<input type="text" id="catLicencia" name="catLicencia" class="form-control" disabled>
+		</div>
+		<div class="col-md-4">
+			<label>Fecha Psicosomático</label>
+			<input type="date" id="fechaPsicosomatico" name="fechaPsicosomatico" class="form-control" disabled>
+		</div>
+		</div>
+<!-- Placa -->
 		<div class="cell small-12 medium-6 large-4">
 			<label for="placa">Placa
 			<input type="text" name="placa" id="placa" placeholder="Ingrese número de placa">
 			</label>
 		</div>
 
-		<!-- Consulta de placa -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="consulta_placa">Consulta de Placa
-			<input type="text" name="consulta_placa" id="consulta_placa">
-			</label>
-		</div>
-
 		<!-- Hora -->
 		<div class="cell small-12 medium-6 large-4">
-			<label for="hora">Hora
-			<input type="time" name="hora" id="hora" readonly>
+			<label for="hora">Fecha y Hora
+			<input type="text" name="hora" id="hora" readonly placeholder="Se cargará automáticamente">
 			</label>
 		</div>
-
-		</div>
-
 		<!-- Botón de guardar -->
 		<div class="grid-x">
 		<div class="cell small-12 text-center">
@@ -68,7 +53,7 @@
 			</button>
 		</div>
 		</div>
-	</form>
+</form>
 
 	<!-- Tabla de lista -->
 	<div class="grid-x">
@@ -96,5 +81,6 @@
 		</div>
 	</div>
 </div>
+<script src="<?php echo constant('URL') ?>public/js/verificacion1.js"></script> 
 
 <?php require('views/footer.php'); ?>

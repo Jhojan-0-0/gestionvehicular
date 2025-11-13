@@ -22,6 +22,11 @@
 
   <!-- JS PRINCIPALES -->
   <script src="<?php echo constant('URL') . 'public/foundation/js/jquery.js'; ?>"></script>
+  
+  <!-- jQuery UI para autocompletar -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  
   <script src="<?php echo constant('URL') . 'public/foundation/js/foundation.js'; ?>"></script>
   <script src="<?php echo constant('URL') . 'public/js/validation.js'; ?>"></script>
   <script src="<?php echo constant('URL') . 'public/assets/Assets/js/jpaginate.js'; ?>"></script>

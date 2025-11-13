@@ -11,10 +11,10 @@
           <input type="text" id="dni" name="dni" placeholder="Ingrese DNI" required maxlength="8" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         </label>
         <label>Nombre
-          <input type="text" id="nombre" name="nombre">
+          <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" readonly>
         </label>
         <label>Apellidos
-          <input type="text" id="apellido" name="apellido">
+          <input type="text" id="apellido" name="apellido" placeholder="Apellidos completos" readonly>
         </label>
         <label>Categoría de Licencia
           <input type="text" id="catLicencia" name="catLicencia" placeholder="Ej: A-I, A-IIa, A-IIb, etc." required>

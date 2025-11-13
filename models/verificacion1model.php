@@ -7,31 +7,15 @@ class Verificacion1model extends Model
         parent::__construct();
     }
 
-     public function BuscarPorDni($dni)
+    public function ListaPersonalPorDni($dni)
     {
-        // Consulta con búsqueda parcial
-        $sql = "SELECT idpersonal, nombre, apellido, dni, telefono, email, sexo 
+        // Sanitizar entrada para prevenir SQL injection
+        $dni = mysqli_real_escape_string($this->conn->conn, $dni);
+        $sql = "SELECT idpersonal, dni, nombre, apellido, catLicencia, fechaPsicosomatico 
                 FROM personal 
                 WHERE dni LIKE '%$dni%';";
-
-        // Usamos tu método de conexión
         $res = $this->conn->ConsultaCon($sql);
-
-        $data = [];
-
-        foreach ($res as $row) {
-            $data[] = [
-                "id"        => $row["idpersonal"],
-                "label"     => $row["dni"] . " - " . $row["nombre"] . " " . $row["apellido"],
-                "dni"       => $row["dni"],
-                "nombre"    => $row["nombre"],
-                "apellido"  => $row["apellido"],
-                "telefono"  => $row["telefono"],
-                "email"     => $row["email"],
-                "sexo"      => $row["sexo"]
-            ];
-        }
-
-        return $data;
+        return $res;
     }
+
 }
