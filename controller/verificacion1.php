@@ -12,6 +12,24 @@ class verificacion1 extends Controller
 	{
 		$this->view->Render('verificacion1/index');
 	}
+
+    function verificacionU()
+	{
+		echo $dni = $_POST['idpersonal'];
+		echo $nombre = $_POST['dni'];
+		echo $apellido = $_POST['nombre'];
+        echo $catLicencia = $_POST['apellido'];
+        echo $fechaPsicosomatico = $_POST['catLicencia'];
+        echo $fechaPsicosomatico = $_POST['fechaPsicosomatico'];
+        echo $fechaPsicosomatico = $_POST['placa'];
+        echo $fechaPsicosomatico = $_POST['hora'];
+        // if($this->model->CreatePersonal($dni,$nombre,$apellido,$catLicencia,$fechaPsicosomatico)){
+		// 	echo "REGISTRO EXITOSO";
+		// }else{
+		// 	echo "ERROR AL INSERTAR";
+		// }
+	}
+
 	  // Acción para búsqueda por DNI (autocompletar)
     public function dni()
     {

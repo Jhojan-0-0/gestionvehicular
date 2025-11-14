@@ -7,53 +7,48 @@
 		<h3 class="title1">1. Verificación de Inicio</h3>
 	</div>
 
-	<!-- Formulario principal -->
-<form class="verificacion1 callout" method="post" id="formPersonal">
-		<div class="row">
-		<div class="col-md-4">
-			<label>DNI</label>
-			<input type="text" id="dni" name="dni" class="form-control" placeholder="Ingrese DNI" maxlength="8" required>
-			<input type="hidden" id="idpersonal" name="idpersonal">
-		</div>
-		<div class="col-md-4">
-			<label>Nombre</label>
-			<input type="text" id="nombre" name="nombre" class="form-control" disabled>
-		</div>
-		<div class="col-md-4">
-			<label>Apellido</label>
-			<input type="text" id="apellido" name="apellido" class="form-control" disabled>
-		</div>
-		<div class="col-md-4">
-			<label>Categoría Licencia</label>
-			<input type="text" id="catLicencia" name="catLicencia" class="form-control" disabled>
-		</div>
-		<div class="col-md-4">
-			<label>Fecha Psicosomático</label>
-			<input type="date" id="fechaPsicosomatico" name="fechaPsicosomatico" class="form-control" disabled>
-		</div>
-		</div>
-<!-- Placa -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="placa">Placa
-			<input type="text" name="placa" id="placa" placeholder="Ingrese número de placa">
-			</label>
-		</div>
+	<div class="center-screen">
+	<form action="<?php echo constant('URL') ?>verificacion1/verificacionU" 
+			method="post" id="formPersonal" class="translucent-form-overlay">
+		<label>DNI
+			<input type="text" id="dni" name="dni" placeholder="Ingrese DNI" 
+				maxlength="8" required 
+				oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+		</label>
 
-		<!-- Hora -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="hora">Fecha y Hora
-			<input type="text" name="hora" id="hora" readonly placeholder="Se cargará automáticamente">
-			</label>
-		</div>
-		<!-- Botón de guardar -->
-		<div class="grid-x">
-		<div class="cell small-12 text-center">
-			<button class="button" type="submit">
+		<input type="hidden" id="idpersonal" name="idpersonal">
+
+		<label>Nombre
+			<input type="text" id="nombre" name="nombre" readonly>
+		</label>
+
+		<label>Apellido
+			<input type="text" id="apellido" name="apellido" readonly>
+		</label>
+
+		<label>Categoría de Licencia
+			<input type="text" id="catLicencia" name="catLicencia" readonly>
+		</label>
+
+		<label>Fecha Psicosomático
+			<input type="date" id="fechaPsicosomatico" name="fechaPsicosomatico" readonly>
+		</label>
+
+		<label>Placa
+			<input type="text" id="placa" name="placa" placeholder="Ingrese número de placa">
+		</label>
+
+		<label>Fecha y Hora
+			<input type="text" id="hora" name="hora" placeholder="Se cargará automáticamente" readonly>
+		</label>
+
+		<button type="submit" class="primary button expanded search-button">
 			<i class="fa-solid fa-floppy-disk"></i> Guardar
-			</button>
-		</div>
-		</div>
-</form>
+		</button>
+
+	</form>
+	</div>
+<br>	
 
 	<!-- Tabla de lista -->
 	<div class="grid-x">
@@ -81,6 +76,41 @@
 		</div>
 	</div>
 </div>
+<style>
+	/* Centrado total */
+.center-screen {
+  width: 100%;
+  height: 100vh; /* ocupa toda la altura del viewport */
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center;     /* vertical */
+}
+
+/* Mantén tu estilo existente */
+.translucent-form-overlay {
+  max-width: 500px;
+  width: 100%;
+  background-color: rgba(54, 54, 54, 0.8);
+  padding: 20px;
+  color: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.translucent-form-overlay h3,
+.translucent-form-overlay label {
+  color: #fefefe;
+}
+
+.translucent-form-overlay input {
+  color: #333;
+}
+
+.translucent-form-overlay input::placeholder {
+  color: #8a8a8a;
+}
+
+</style>
 <script src="<?php echo constant('URL') ?>public/js/verificacion1.js"></script> 
 
 <?php require('views/footer.php'); ?>
