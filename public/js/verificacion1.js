@@ -50,14 +50,42 @@ $(document).ready(function () {
     const minutos = String(ahora.getMinutes()).padStart(2, '0');
     const segundos = String(ahora.getSeconds()).padStart(2, '0');
     
-    // Formato: DD/MM/YYYY HH:MM:SS (24 horas)
-    const fechaHoraFormato = `${dia}/${mes}/${año} ${horas}:${minutos}:${segundos}`;
+  // Formato para MySQL: YYYY-MM-DD HH:MM:SS (24 horas)
+  const fechaHoraFormato = `${año}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
     
     // Asignar al campo
-    $("#hora").val(fechaHoraFormato);
+    $("#fechaVerificacion").val(fechaHoraFormato);
   }
 
   // Establecer fecha y hora al cargar la página
   establecerFechaHora();
+  // Adjuntar el handler de envío (asegura que el formulario tenga el comportamiento AJAX)
+  RegistroVerificacion();
 });
 
+function RegistroVerificacion() {
+    $("#formVerificacion").on("submit", function (event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+        url: $(this).attr("action"),
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert("Registro ¡Exitoso!");
+            // Limpiar todos los campos del formulario
+            $("#formVerificacion")[0].reset();
+            
+            setTimeout(function () {
+            location.reload(true); // true fuerza recarga completa desde el servidor
+            }, 300);
+        },
+        error: function (error) {
+            console.error("Error:", error);
+            alert("Hubo un error al enviar el formulario.");
+        },
+    });
+    });
+}

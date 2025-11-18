@@ -8,8 +8,7 @@
 	</div>
 
 	<div class="center-screen">
-	<form action="<?php echo constant('URL') ?>verificacion1/verificacionU" 
-			method="post" id="formPersonal" class="translucent-form-overlay">
+	<form action="<?php echo constant('URL') ?>verificacion1/verificacionU" method="post" id="formVerificacion" class="translucent-form-overlay">
 		<label>DNI
 			<input type="text" id="dni" name="dni" placeholder="Ingrese DNI" 
 				maxlength="8" required 
@@ -35,11 +34,11 @@
 		</label>
 
 		<label>Placa
-			<input type="text" id="placa" name="placa" placeholder="Ingrese número de placa">
+			<input type="text" id="placaVehiculo" name="placaVehiculo" placeholder="Ingrese número de placa">
 		</label>
 
 		<label>Fecha y Hora
-			<input type="text" id="hora" name="hora" placeholder="Se cargará automáticamente" readonly>
+			<input type="text" id="fechaVerificacion" name="fechaVerificacion" placeholder="Se cargará automáticamente" readonly>
 		</label>
 
 		<button type="submit" class="primary button expanded search-button">
@@ -80,7 +79,7 @@
 	/* Centrado total */
 .center-screen {
   width: 100%;
-  height: 100vh; /* ocupa toda la altura del viewport */
+  height: 80vh; /* ocupa toda la altura del viewport */
   display: flex;
   justify-content: center; /* horizontal */
   align-items: center;     /* vertical */

@@ -28,7 +28,7 @@ class Login extends Controller
 					break;
 				case 2:
 				   // Personal
-				$_SESSION['katari'] = $datos['idpersonal'];
+				$_SESSION['katari'] = $datos['idusuario'];
 				header("Location: ".constant('URL')."/registro");
 					break;
 				break;
@@ -45,7 +45,7 @@ class Login extends Controller
 		$_SESSION['katari'] = '';
 		$_SESSION['username'] = '';
 		$_SESSION['nivel'] = '';
-		$_SESSION['idpersonal'] = '';
+		$_SESSION['idusuario'] = '';
 		header("Location: ". constant('URL'));
 	}
 }
