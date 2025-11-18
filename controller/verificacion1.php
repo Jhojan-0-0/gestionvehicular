@@ -10,6 +10,8 @@ class verificacion1 extends Controller
 
 	function render()
 	{
+        $datos = $this->model->ListaPersonalV();
+        $this->view->data = $datos;
 		$this->view->Render('verificacion1/index');
 	}
 
@@ -71,5 +73,6 @@ class verificacion1 extends Controller
             exit;
         }
     }
+
 
 }

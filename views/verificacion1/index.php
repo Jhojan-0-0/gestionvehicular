@@ -34,7 +34,7 @@
 		</label>
 
 		<label>Placa
-			<input type="text" id="placaVehiculo" name="placaVehiculo" placeholder="Ingrese número de placa">
+			<input type="text" id="placaVehiculo" name="placaVehiculo" placeholder="Ingrese número de placa" required>
 		</label>
 
 		<label>Fecha y Hora
@@ -61,6 +61,8 @@
 				<th class="text-center">DNI</th>
 				<th class="text-center">Apellidos</th>
 				<th class="text-center">Nombre</th>
+				<th class="text-center">Categoría Licencia</th>
+				<th class="text-center">Fecha Registro Psicosomático</th>
 				<th class="text-center">Placa</th>
 				<th class="text-center">Hora</th>
 				<th class="text-center">Consulta de Placa</th>
@@ -68,8 +70,26 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- Los registros se cargan dinámicamente -->
-			</tbody>
+				<?php
+			while($row = mysqli_fetch_assoc($this->data)){
+				echo "<tr>
+						<td>".$row['idVerificacion1']."</td>
+						<td>".$row['dni']."</td>
+						<td>".$row['apellido']."</td>
+						<td>".$row['nombre']."</td>
+						<td>".$row['catLicencia']."</td>
+						<td>".$row['fechaPsicosomatico']."</td>
+						<td>".$row['placaVehiculo']."</td>
+						<td>".$row['fechaVerificacion']."</td>
+						<td>
+							<a href='https://www.sat.gob.pe/consultas/placa' target='_blank' class='secondary button'>Consultar Placa</a>
+						</td>
+						<td>
+							<button class='secondary button'>Editar</button>
+						</td>
+						</tr>";
+			}
+			?>
 			</table>
 		</div>
 		</div>

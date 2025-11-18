@@ -16,98 +16,90 @@
 		</div>
 	</div>
 
-	<!-- Formulario de consulta por DNI -->
-	<form action="<?php echo constant('URL') ?>proyectos/createTarea" 
+	<!-- Formulario de consulta por DNI (diseño ordenado y centrado) -->
+	<div class="center-screen callout shadow">
+	<form action="<?php echo constant('URL') ?>verificacion3/guardarFiltro" 
 			method="POST" 
 			enctype="multipart/form-data" 
-			class="tarea callout" 
+			class="translucent-form-overlay" 
 			id="signar-tareas">
 
-		<div class="grid-x grid-padding-x">
+		<h4 class="text-center">Completar datos por DNI</h4>
 
-		<!-- DNI -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="dni">DNI
-			<input type="text" id="dni" name="dni" placeholder="Ingrese su DNI">
-			</label>
-		</div>
+		<div class="grid-x grid-padding-x align-center">
 
-		<!-- Apellidos -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="apellidos">Apellidos
-			<input type="text" name="apellidos" id="apellidos" placeholder="Ingrese apellidos" readonly>
-			</label>
-		</div>
+			<!-- Columna 1 -->
+			<div class="cell small-12 medium-6">
+				<label for="dni">DNI
+				<input type="text" id="dni" name="dni" placeholder="Ingrese su DNI" maxlength="8" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+				</label>
 
-		<!-- Nombre -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="nombre">Nombre
-			<input type="text" name="nombre" id="nombre" placeholder="Ingrese nombres" readonly>
-			</label>
-		</div>
+				<input type="hidden" id="idpersonal" name="idpersonal">
 
-		<!-- Placa -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="placa">Placa
-			<input type="text" name="placa" id="placa" placeholder="Ingrese placa">
-			</label>
-		</div>
+				<label for="apellidos">Apellidos
+				<input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" readonly>
+				</label>
 
-		<!-- Hora -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="hora">Hora
-			<input type="time" name="hora" id="hora" readonly>
-			</label>
-		</div>
+				<label for="catLicencia">Categoría de Licencia
+				<input type="text" name="catLicencia" id="catLicencia" placeholder="Ejemplo: A-IIb" readonly>
+				</label>
+			</div>
 
-		<!-- Consulta de placa -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="consulta_placa">Consulta de Placa
-			<input type="text" name="consulta_placa" id="consulta_placa">
-			</label>
-		</div>
+			<!-- Columna 2 -->
+			<div class="cell small-12 medium-6">
+				<label for="nombre">Nombre
+				<input type="text" name="nombre" id="nombre" placeholder="Nombres" readonly>
+				</label>
 
-		<!-- Categoría de licencia -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="categoria_licencia">Categoría de Licencia
-			<input type="text" name="categoria_licencia" id="categoria_licencia" placeholder="Ejemplo: A-IIb">
-			</label>
-		</div>
+				<label for="placaVehiculo">Placa
+				<input type="text" name="placaVehiculo" id="placaVehiculo" placeholder="Ingrese placa" readonly>
+				</label>
 
-		<!-- Fecha de registro del sicosomático -->
-		<div class="cell small-12 medium-6 large-4">
-			<label for="fecha_registro">Fecha de Registro del Sicosomático
-			<input type="date" name="fecha_registro" id="fecha_registro">
-			</label>
-		</div>
-		</div>
+				<label for="fechaPsicosomatico">Fecha Psicosomático
+				<input type="date" name="fechaPsicosomatico" id="fechaPsicosomatico" readonly>
+				</label>
+			</div>
 
-		<!-- Botones de aprobación/desaprobación -->
-		<div class="grid-x text-center">
-		<div class="cell small-12 medium-6 large-6">
-			<button id="btn-aprobado" class="button warning" style="border-radius: 40px;">
-			<i class="fa fa-window-close" aria-hidden="true"></i> Aprobado
-			</button>
-		</div>
-		<div class="cell small-12 medium-6 large-6">
-			<button id="btn-desaprobado" class="button success" style="border-radius: 40px;">
-			<i class="fa fa-check-square" aria-hidden="true"></i> Desaprobado
-			</button>
-		</div>
-		</div>
+			<!-- Fecha y hora completo (una sola fila) -->
+			<div class="cell small-12">
+				<label for="fechaVerificacion">Fecha y Hora de primera Verificacion
+				<input type="text" name="fechaVerificacion" id="fechaVerificacion" placeholder="Fecha y Hora" readonly>
+				</label>
+			</div>
 
-		<br>
+			<!-- Botones de acción y estado -->
+			<div class="cell small-12">
+				<div class="grid-x grid-margin-x align-middle">
+					<div class="cell small-12 medium-4 text-center">
+						<button id="btn-aprobado" type="button" class="button expanded warning" style="border-radius: 40px;">
+						<i class="fa fa-window-close" aria-hidden="true"></i> Aprobado
+						</button>
+					</div>
+					<div class="cell small-12 medium-4 text-center">
+						<button id="btn-desaprobado" type="button" class="button expanded success" style="border-radius: 40px;">
+						<i class="fa fa-check-square" aria-hidden="true"></i> Desaprobado
+						</button>
+					</div>
+					<div class="cell small-12 medium-4 text-center">
+						<label for="estadoVisible">Estado
+						<input type="text" id="estadoVisible" name="estadoVisible" readonly>
+						</label>
+					</div>
+				</div>
+				<input type="hidden" id="estado" name="estado" value="">
+			</div>
 
-		<!-- Botón guardar -->
-		<div class="grid-x">
-		<div class="cell small-12 text-center">
-			<button class="button" type="submit">
-			<i class="fa-solid fa-floppy-disk"></i> Guardar
-			</button>
-		</div>
+			<!-- Botón guardar centrado -->
+			<div class="cell small-12 text-center">
+				<button class="button primary" type="submit" style="border-radius: 40px; max-width:220px;">
+				<i class="fa-solid fa-floppy-disk"></i> Guardar
+				</button>
+			</div>
+
 		</div>
 
 	</form>
+	</div>
 
 	<br>
 
@@ -120,22 +112,25 @@
 			<tr>
 				<th>N°</th>
 				<th>DNI</th>
-				<th>Nombre</th>
 				<th>Apellidos</th>
+				<th>Nombre</th>
+				<th>Categoría Licencia</th>
+				<th>Fecha Registro Psicosomático</th>
 				<th>Placa</th>
-				<th>Licencia</th>
-				<th>Estado</th>
-				<th>Observaciones</th>
+				<th>Hora</th>
+				<th>Consulta de Placa</th>
 				<th>Acciones</th>
 			</tr>
 			</thead>
-			<tbody id="observaciones-P">
-			<!-- Se llenará dinámicamente -->
+			<tbody>
+
 			</tbody>
 		</table>
 		</div>
 	</div>
 	<br>
 </div>
+
+<script src="<?php echo constant('URL') ?>public/js/verificacion3.js"></script>
 
 <?php require('views/footer.php'); ?>

@@ -41,5 +41,30 @@ class Verificacion1model extends Model
             return $res;
         }
     }
+    public function ListaPersonalV()
+{
+    $sql = "SELECT 
+    p.idpersonal, 
+    p.dni, 
+    p.nombre, 
+    p.apellido, 
+    p.catLicencia, 
+    p.fechaPsicosomatico, 
+    v.idVerificacion1, 
+    v.fechaVerificacion, 
+    v.placaVehiculo 
+FROM 
+    personal p 
+INNER JOIN
+    verificacion1 v 
+ON 
+    p.idpersonal = v.idpersonal
+ORDER BY 
+    p.apellido ASC;
+";
+
+    $res = $this->conn->ConsultaCon($sql);
+    return $res;
+}
 
 }
