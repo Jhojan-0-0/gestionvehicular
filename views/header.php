@@ -43,8 +43,8 @@
             <ul class="dropdown menu" data-dropdown-menu>
               <li><a href="<?php echo constant('URL'); ?>registro">Registro Postulante</a></li>
               <li><a href="<?php echo constant('URL'); ?>verificacion1">1 Verificación</a></li>
-              <li><a href="<?php echo constant('URL'); ?>verificacion2">2 Verificación</a></li>
-              <li><a href="<?php echo constant('URL'); ?>verificacion3">3 Filtro</a></li>
+              <!-- <li><a href="<?php echo constant('URL'); ?>verificacion2">2 Verificación</a></li> -->
+              <li><a href="<?php echo constant('URL'); ?>verificacion3"> Filtro</a></li>
             </ul>
           </div>
 

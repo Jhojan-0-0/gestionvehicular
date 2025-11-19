@@ -21,8 +21,7 @@
 	<form action="<?php echo constant('URL') ?>verificacion3/guardarFiltro" 
 			method="POST" 
 			enctype="multipart/form-data" 
-			class="translucent-form-overlay" 
-			id="signar-tareas">
+			class="translucent-form-overlay" id="PostFiltro">
 
 		<h4 class="text-center">Completar datos por DNI</h4>
 
@@ -111,19 +110,35 @@
 			<thead>
 			<tr>
 				<th>N°</th>
-				<th>DNI</th>
 				<th>Apellidos</th>
 				<th>Nombre</th>
+				<th>DNI</th>
 				<th>Categoría Licencia</th>
 				<th>Fecha Registro Psicosomático</th>
 				<th>Placa</th>
-				<th>Hora</th>
-				<th>Consulta de Placa</th>
+				<th>Fecha de 1 Verificacion</th>
 				<th>Acciones</th>
 			</tr>
 			</thead>
 			<tbody>
-
+			<?php
+			while($row = mysqli_fetch_assoc($this->data)){
+				echo "<tr>
+						<td>".$row['idpersonal']."</td>
+						<td>".$row['apellido']."</td>
+						<td>".$row['nombre']."</td>
+						<td>".$row['dni']."</td>		
+						<td>".$row['catLicencia']."</td>
+						<td>".$row['fechaPsicosomatico']."</td>
+						<td>".$row['placaVehiculo']."</td>
+						<td>".$row['fechaVerificacion']."</td>
+						<td>".$row['estado']."</td>
+						<td>
+							<button class='secondary button'>Editar</button>
+						</td>
+					</tr>";
+			}
+			?>	
 			</tbody>
 		</table>
 		</div>

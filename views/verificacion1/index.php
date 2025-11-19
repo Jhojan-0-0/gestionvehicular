@@ -34,7 +34,7 @@
 		</label>
 
 		<label>Placa
-			<input type="text" id="placaVehiculo" name="placaVehiculo" placeholder="Ingrese número de placa" required>
+			<input type="text" id="placaVehiculo" name="placaVehiculo" placeholder="Ingrese número de placa" required  onkeyup="this.value = this.value.toUpperCase()">
 		</label>
 
 		<label>Fecha y Hora

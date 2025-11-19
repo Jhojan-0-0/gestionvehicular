@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  postFiltro();
   // AUTOCOMPLETAR DNI
   $("#dni").autocomplete({
     minLength: 3,
@@ -26,7 +27,7 @@ $(document).ready(function () {
       $("#nombre").val(ui.item.nombre);
       $("#apellidos").val(ui.item.apellido);
       $("#catLicencia").val(ui.item.catLicencia);
-       $("#fechaVerificacion").val(ui.item.fechaVerificacion);
+      $("#fechaVerificacion").val(ui.item.fechaVerificacion);
       $("#fechaPsicosomatico").val(ui.item.fechaPsicosomatico);
       // placaVehiculo si ya existe en el registro
       if (ui.item.placaVehiculo) {
@@ -67,3 +68,30 @@ $(document).ready(function () {
     enviarFormulario();
   });
 });
+
+function postFiltro() {
+    $("#PostFiltro").on("submit", function (event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+        url: $(this).attr("action"),
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert("Registro ¡Exitoso!");
+            // Limpiar todos los campos del formulario
+            $("#PostFiltro")[0].reset();
+            
+            setTimeout(function () {
+            location.reload(true); // true fuerza recarga completa desde el servidor
+            }, 300);
+        },
+        error: function (error) {
+            console.error("Error:", error);
+            alert("Hubo un error al enviar el formulario.");
+        },
+    });
+    });
+}

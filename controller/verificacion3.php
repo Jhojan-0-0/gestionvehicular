@@ -10,6 +10,8 @@ class verificacion3 extends Controller
 
 	function render()
 	{
+		$datos = $this->model->ListaFiltro();
+        $this->view->data = $datos;
 		$this->view->Render('verificacion3/index');
 	}
 
@@ -41,22 +43,16 @@ class verificacion3 extends Controller
 	}
 
 	// Acción para guardar en filtroPersonal
-	public function guardarFiltro()
+	function guardarFiltro()
 	{
-		// Leer datos POST
-		$idpersonal = isset($_POST['idpersonal']) ? (int)$_POST['idpersonal'] : 0;
-		$estado = isset($_POST['estado']) ? trim($_POST['estado']) : '';
-
-		if ($idpersonal <= 0 || empty($estado)) {
-			echo "ERROR: Datos incompletos";
-			return;
-		}
-
-		if ($this->model->registroFiltro($idpersonal, $estado)) {
+		$idpersonal = $_POST['idpersonal'];
+		$estado = $_POST['estado'];
+		if($this->model->registroFiltr($idpersonal,$estado)){
 			echo "REGISTRO EXITOSO";
-		} else {
+		}else{
 			echo "ERROR AL INSERTAR";
 		}
 	}
+
 	
 }

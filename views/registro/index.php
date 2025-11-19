@@ -17,8 +17,16 @@
           <input type="text" id="apellido" name="apellido" placeholder="Apellidos completos" readonly>
         </label>
         <label>Categoría de Licencia
-          <input type="text" id="catLicencia" name="catLicencia" placeholder="Ej: A-I, A-IIa, A-IIb, etc." required>
+          <input type="text" id="catLicencia" name="catLicencia" placeholder="Ej: A-I, A-IIa, A-IIb, etc." required onkeyup="this.value = this.value.toUpperCase()">
         </label>
+
+        <!-- <label>Tipo de tramite
+          <select name="tipoTramite" id="tipoTramite">
+							<option value="" selected disabled>[Seleccionar]</option> 
+							<option value="OBTENCION">OBTENCION</option>
+							<option value="RECATEG">RECATEG</option>
+						</select>
+        </label> -->
         <label>Fecha de Registro del Psicosomático
           <input type="date" id="fechaPsicosomatico" name="fechaPsicosomatico">
         </label>
