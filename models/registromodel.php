@@ -16,5 +16,17 @@ class Registromodel extends Model{
         $res = $this->conn->ConsultaCon($sql);
         return $res;
     }
+    // Verifica si un DNI ya existe en la tabla personal. Retorna true si existe, false si no.
+    public function ExistsDni($dni)
+    {
+    // La propiedad conn es una instancia de Conexion; el objeto mysqli está en $this->conn->conn
+    $dni = isset($this->conn->conn) ? $this->conn->conn->real_escape_string($dni) : $dni;
+        $sql = "SELECT COUNT(*) AS c FROM personal WHERE dni = '$dni'";
+        $res = $this->conn->ConsultaArray($sql);
+        if ($res === false) {
+            return false;
+        }
+        return isset($res['c']) && intval($res['c']) > 0;
+    }
 }
 ?>

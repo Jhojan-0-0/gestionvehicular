@@ -4,30 +4,63 @@ $(document).ready(function () {
 });
 
 function postRegistro() {
-    $("#ingresoRegistro").on("submit", function (event) {
-        event.preventDefault();
-        var formData = new FormData(this);
+  $("#ingresoRegistro").on("submit", function (event) {
+    event.preventDefault();
+
+    var dniVal = $("#dni").val().trim();
+    if (!dniVal || dniVal.length !== 8) {
+      alert('Ingrese un DNI válido de 8 dígitos antes de registrar.');
+      $("#dni").focus();
+      return;
+    }
+
+    var base = typeof BASE_URL !== 'undefined' ? BASE_URL : window.location.origin + '/gestionvehicular/';
+    base = base.replace(/\/+$/, '');
+    var checkUrl = base + '/registro/existsDni';
+
+    // Primera llamada: comprobar si el DNI ya existe en la BD
+    $.ajax({
+      url: checkUrl,
+      type: 'POST',
+      data: { dni: dniVal },
+      success: function (res) {
+        var data = typeof res === 'object' ? res : JSON.parse(res);
+        if (data && data.error) {
+          console.error('Error en checkDni:', data.error);
+          alert('Error al verificar DNI. Intente de nuevo.');
+          return;
+        }
+        if (data && data.exists) {
+          alert('El DNI ya está registrado. No se puede registrar de nuevo.');
+          $("#dni").focus();
+          return;
+        }
+
+        // Si no existe, proceder a enviar el formulario para crear el registro
+        var formData = new FormData($("#ingresoRegistro")[0]);
         $.ajax({
-        url: $(this).attr("action"),
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            alert("Registro ¡Exitoso!");
-            // Limpiar todos los campos del formulario
+          url: $("#ingresoRegistro").attr('action'),
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            alert('Registro ¡Exitoso!');
             $("#ingresoRegistro")[0].reset();
-            
-            setTimeout(function () {
-            location.reload(true); // true fuerza recarga completa desde el servidor
-            }, 300);
-        },
-        error: function (error) {
-            console.error("Error:", error);
-            alert("Hubo un error al enviar el formulario.");
-        },
+            setTimeout(function () { location.reload(true); }, 300);
+          },
+          error: function (error) {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar el formulario.');
+          }
+        });
+      },
+      error: function (xhr, status, err) {
+        console.error('Error verificando DNI:', err);
+        alert('No se pudo verificar el DNI. Intente de nuevo.');
+      }
     });
-    });
+  });
 }
 
 function dni() {

@@ -16,16 +16,23 @@ class registro extends Controller
 	}
 	function createPersonal()
 	{
-		$dni = $_POST['dni'];
-		$nombre = $_POST['nombre'];
-		$apellido = $_POST['apellido'];
-        $catLicencia = $_POST['catLicencia'];
-        $fechaPsicosomatico = $_POST['fechaPsicosomatico'];
-		if($this->model->CreatePersonal($dni,$nombre,$apellido,$catLicencia,$fechaPsicosomatico)){
-			echo "REGISTRO EXITOSO";
-		}else{
-			echo "ERROR AL INSERTAR";
-		}
+        $dni = isset($_POST['dni']) ? trim($_POST['dni']) : '';
+        $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+        $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
+        $catLicencia = isset($_POST['catLicencia']) ? $_POST['catLicencia'] : '';
+        $fechaPsicosomatico = isset($_POST['fechaPsicosomatico']) ? $_POST['fechaPsicosomatico'] : '';
+
+        // Verificar en servidor si el DNI ya está registrado para evitar duplicados si se omite la verificación en el cliente
+        if ($this->model->ExistsDni($dni)) {
+            echo "DNI YA REGISTRADO";
+            return;
+        }
+
+        if($this->model->CreatePersonal($dni,$nombre,$apellido,$catLicencia,$fechaPsicosomatico)){
+            echo "REGISTRO EXITOSO";
+        }else{
+            echo "ERROR AL INSERTAR";
+        }
 	}
 
 	public function dni()
@@ -84,4 +91,17 @@ class registro extends Controller
 
     }
     
+    // Endpoint AJAX para comprobar si un DNI ya existe en la base de datos
+    public function existsDni()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $dni = isset($_POST['dni']) ? trim($_POST['dni']) : '';
+        if (empty($dni)) {
+            echo json_encode(['error' => 'DNI no recibido']);
+            return;
+        }
+
+        $exists = $this->model->ExistsDni($dni);
+        echo json_encode(['exists' => $exists]);
+    }
 }

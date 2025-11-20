@@ -10,7 +10,7 @@
 	<!-- Botón de consulta general -->
 	<div class="grid-x text-center">
 		<div class="cell small-12 medium-12 large-12">
-		<button id="btn-completado" class="button" style="border-radius: 40px;">
+		<button id="btn-consulta" class="button" style="border-radius: 40px;">
 			<i class="fa fa-search"></i> Consulta Desaprobados
 		</button>
 		</div>
@@ -100,13 +100,21 @@
 	</form>
 	</div>
 
+	<div class="grid-x text-center callout shadow">
+		<div class="cell small-6 medium-6 large-6">
+			<h3 class="title2 text-center">Exportar En Tabla Exel El listado de Registro</h3>
+		</div>
+		<div class="cell small-6 medium-6 large-6">
+			<a href="<?php echo constant('URL') ?>verificacion3/export" class="button success" style="border-radius: 40px;">Exportar</a>
+		</div>
+	</div>
 	<br>
 
 	<!-- Tabla de resultados -->
 	<div id="tabla-pendiente">
 		<div class="cell small-12">
 		<h3 class="title2 text-center">Lista de Postulantes</h3>
-		<table class="stack text-center">
+		<table id="export-table" class="stack text-center">
 			<thead>
 			<tr>
 				<th>N°</th>
