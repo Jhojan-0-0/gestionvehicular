@@ -41,6 +41,32 @@ class Verificacion1model extends Model
             return $res;
         }
     }
+    /**
+     * Verifica si ya existe un registro en verificacion1 para el idpersonal dado.
+     * Devuelve true si existe, false si no.
+     */
+    public function existeRegistroPorIdPersonal($idpersonal)
+    {
+        $mysqli = $this->conn->conn;
+        // Asegurar entero
+        $idpersonal = (int)$idpersonal;
+        if ($stmt = $mysqli->prepare("SELECT COUNT(*) FROM verificacion1 WHERE idpersonal = ?")) {
+            $stmt->bind_param('i', $idpersonal);
+            $stmt->execute();
+            $stmt->bind_result($count);
+            $stmt->fetch();
+            $stmt->close();
+            return ($count > 0);
+        } else {
+            // Fallback si no hay prepare: consulta directa (menos seguro)
+            $sql = "SELECT COUNT(*) as c FROM verificacion1 WHERE idpersonal = '" . $mysqli->real_escape_string($idpersonal) . "'";
+            $res = $this->conn->ConsultaCon($sql);
+            if ($res && $row = mysqli_fetch_assoc($res)) {
+                return ((int)$row['c'] > 0);
+            }
+            return false;
+        }
+    }
     public function ListaPersonalV()
 {
     $sql = "SELECT 

@@ -71,20 +71,35 @@ function RegistroVerificacion() {
         url: $(this).attr("action"),
         type: "POST",
         data: formData,
+        dataType: 'json',
         processData: false,
         contentType: false,
         success: function (response) {
-            alert("Registro ¡Exitoso!");
-            // Limpiar todos los campos del formulario
+          // Esperamos un JSON con {status: 'ok'|'exists'|'error', message: '...'}
+          if (!response || !response.status) {
+            alert('Respuesta inesperada del servidor.');
+            return;
+          }
+
+          if (response.status === 'ok') {
+            alert(response.message || 'Registro exitoso.');
+            // Limpiar el formulario
             $("#formVerificacion")[0].reset();
-            
             setTimeout(function () {
-            location.reload(true); // true fuerza recarga completa desde el servidor
+              location.reload(true);
             }, 300);
+          } else if (response.status === 'exists') {
+            // Mostrar mensaje claro al usuario; no recargar
+            alert(response.message || 'El DNI ya está registrado en Verificación 1.');
+            // Enfocar el campo dni para que el usuario revise
+            $("#dni").focus();
+          } else {
+            alert(response.message || 'Error al procesar la solicitud.');
+          }
         },
-        error: function (error) {
-            console.error("Error:", error);
-            alert("Hubo un error al enviar el formulario.");
+        error: function (xhr, status, error) {
+          console.error("Error AJAX al enviar el formulario:", status, error);
+          alert("Hubo un error al enviar el formulario. Intente de nuevo.");
         },
     });
     });

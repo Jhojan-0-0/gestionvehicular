@@ -39,15 +39,29 @@ class verificacion1 extends Controller
         } else {
             $fechaDB = date('Y-m-d H:i:s');
         }
-    $placaVehiculo = $_POST['placaVehiculo'];
+    $placaVehiculo = isset($_POST['placaVehiculo']) ? trim($_POST['placaVehiculo']) : '';
     // Forzar id como entero simple para seguridad básica
     $idpersonal = (int)$idpersonal;
 
-    if($this->model->registroverificacion($idpersonal,$fechaDB,$placaVehiculo)){
-			echo "REGISTRO EXITOSO";
-		}else{
-			echo "ERROR AL INSERTAR";
-		}
+    header('Content-Type: application/json; charset=utf-8');
+
+    // Verificar duplicado: si el idpersonal ya tiene un registro en verificacion1
+    try {
+        if ($this->model->existeRegistroPorIdPersonal($idpersonal)) {
+            echo json_encode(['status' => 'exists', 'message' => 'El DNI ya fue registrado en Verificación 1.']);
+            return;
+        }
+
+        $ok = $this->model->registroverificacion($idpersonal, $fechaDB, $placaVehiculo);
+        if ($ok) {
+            echo json_encode(['status' => 'ok', 'message' => 'Registro exitoso.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Error al insertar el registro.']);
+        }
+    } catch (Exception $e) {
+        // En caso de excepción devolver JSON con error
+        echo json_encode(['status' => 'error', 'message' => 'Excepción en el servidor: ' . $e->getMessage()]);
+    }
 	}
 
 	  // Acción para búsqueda por DNI (autocompletar)
