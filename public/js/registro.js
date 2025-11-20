@@ -1,5 +1,6 @@
 $(document).ready(function () {
   postRegistro();
+  updatepersonal();
   dni();
 });
 
@@ -62,6 +63,29 @@ function postRegistro() {
     });
   });
 }
+
+function updatepersonal() {
+    $("#update-personal").on("submit", function (event) {
+      event.preventDefault();
+      var formData = new FormData(this);
+      $.ajax({
+        url: $(this).attr("action"),
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert('Actualizacion ¡Exitoso!');
+            $("#update-personal")[0].reset();
+            setTimeout(function () { location.reload(true); }, 300);
+          },
+          error: function (error) {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar el formulario.');
+          }
+      });
+    });
+  }
 
 function dni() {
   // Construir la URL del endpoint de forma robusta

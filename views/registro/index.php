@@ -64,7 +64,7 @@
                           <td>".$row['catLicencia']."</td>
                           <td>".$row['fechaPsicosomatico']."</td>
                           <td>
-                            <button class='secondary button'>Editar</button>
+                            <a href='".constant('URL')."registro/detalle/".$row['idpersonal']."' class='secondary button'>Editar</a>
                           </td>
                         </tr>";
               }

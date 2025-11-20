@@ -4,7 +4,7 @@
         <!-- <div class="grid-x align-center callout shadow">
 			<h3 class="title1">2 Verificacion fi</h3>
 		</div>
-		<form action="<?php echo constant('URL') ?>proyectos/createTarea" method="POST" enctype="multipart/form-data" class="tarea callout shadow" id="signar-tareas">
+		<form action="<?php echo constant('URL') ?>proyectos/createTarea" method="POST" class="tarea callout shadow" id="signar-tareas">
 			<div class="grid-x grid-padding-x">
 				<div class="cell small-12 medium-12 large-12 text-center">
 					<label for="">Proyecto

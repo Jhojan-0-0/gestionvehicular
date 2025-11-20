@@ -10,6 +10,12 @@ class Registromodel extends Model{
         $res = $this->conn->ConsultaSin($sql);
         return $res;
     }
+    public function updatePersonal($idpersonal, $nombre, $apellido, $dni, $catLicencia, $fechaPsicosomatico)
+    {
+        $sql = "UPDATE `personal` SET `nombre` = '$nombre', `apellido` = '$apellido', `dni` = '$dni', `catLicencia` = '$catLicencia', `fechaPsicosomatico` = '$fechaPsicosomatico' WHERE (`idpersonal` = '$idpersonal');";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }
     public function ListaPersonal()
     {
         $sql = "SELECT * FROM personal;";
@@ -27,6 +33,12 @@ class Registromodel extends Model{
             return false;
         }
         return isset($res['c']) && intval($res['c']) > 0;
+    }
+    public function GetPersonalId($id)
+    {
+        $sql = "SELECT * FROM personal WHERE idpersonal = '$id'";
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
     }
 }
 ?>

@@ -14,6 +14,12 @@ class registro extends Controller
         $this->view->data = $datos;
 		$this->view->Render('registro/index');
 	}
+    function detalle($nparam = null)
+	{
+		$id = $nparam[0];
+		$this->view->data = $this->model->GetPersonalId($id);
+		$this->view->Render('registro/detalle');
+	}
 	function createPersonal()
 	{
         $dni = isset($_POST['dni']) ? trim($_POST['dni']) : '';
@@ -33,6 +39,21 @@ class registro extends Controller
         }else{
             echo "ERROR AL INSERTAR";
         }
+	}
+    public function updatePersonal(){
+		
+		$idpersonal = $_POST['idpersonal'];
+		$nombre = $_POST['nombre'];
+		$apellido = $_POST['apellido'];
+		$dni = $_POST['dni'];
+		$catLicencia = $_POST['catLicencia'];
+		$fechaPsicosomatico = $_POST['fechaPsicosomatico'];
+		if($this->model->updatePersonal($idpersonal, $nombre, $apellido, $dni, $catLicencia, $fechaPsicosomatico))
+		{
+			echo "EXITO AL ACTUALIZAR";
+		}else{
+			echo "ERROR AL ACTUALIZAR";
+		}	
 	}
 
 	public function dni()

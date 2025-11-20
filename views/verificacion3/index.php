@@ -20,7 +20,6 @@
 	<div class="center-screen callout shadow">
 	<form action="<?php echo constant('URL') ?>verificacion3/guardarFiltro" 
 			method="POST" 
-			enctype="multipart/form-data" 
 			class="translucent-form-overlay" id="PostFiltro">
 
 		<h4 class="text-center">Completar datos por DNI</h4>
