@@ -100,11 +100,27 @@
 	</div>
 
 	<div class="grid-x text-center callout shadow">
-		<div class="cell small-6 medium-6 large-6">
-			<h3 class="title2 text-center">Exportar En Tabla Exel El listado de Registro</h3>
+		<div class="cell small-12">
+			<h3 class="title2 text-center">Exportar En Tabla Excel El listado de Registro</h3>
 		</div>
-		<div class="cell small-6 medium-6 large-6">
-			<a href="<?php echo constant('URL') ?>verificacion3/export" class="button success" style="border-radius: 40px;">Exportar</a>
+		<div class="cell small-12">
+			<form id="export-form" method="POST" action="<?php echo constant('URL') ?>verificacion3/export">
+				<div class="grid-x grid-padding-x align-center">
+					<div class="cell small-12 medium-4">
+						<label for="fecha_inicio">Desde Fecha
+						<input type="date" id="fecha_inicio" name="fecha_inicio" required>
+						</label>
+					</div>
+					<div class="cell small-12 medium-4">
+						<label for="fecha_fin">Hasta Fecha
+						<input type="date" id="fecha_fin" name="fecha_fin" required>
+						</label>
+					</div>
+					<div class="cell small-12 medium-4 text-center" style="display: flex; align-items: flex-end;">
+						<button type="submit" class="button success expanded" style="border-radius: 40px;">Exportar</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 	<br>
@@ -151,5 +167,14 @@
 </div>
 
 <script src="<?php echo constant('URL') ?>public/js/verificacion3.js"></script>
+
+<script>
+	// Establecer la fecha actual por defecto en ambos campos
+	document.addEventListener('DOMContentLoaded', function() {
+		const today = new Date().toISOString().split('T')[0];
+		document.getElementById('fecha_inicio').value = today;
+		document.getElementById('fecha_fin').value = today;
+	});
+</script>
 
 <?php require('views/footer.php'); ?>

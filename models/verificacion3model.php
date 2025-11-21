@@ -52,4 +52,36 @@ class Verificacion3model extends Model
         $res = $this->conn->ConsultaCon($sql);
         return $res;
     }
+
+    // Obtener lista de filtro con rango de fechas
+    public function ListaFiltroConFechas($fecha_inicio, $fecha_fin)
+    {
+        $fecha_inicio = mysqli_real_escape_string($this->conn->conn, $fecha_inicio);
+        $fecha_fin = mysqli_real_escape_string($this->conn->conn, $fecha_fin);
+
+        $sql = "SELECT 
+            p.idpersonal,
+            p.dni,
+            p.nombre,
+            p.apellido,
+            p.catLicencia,
+            p.fechaPsicosomatico,
+
+            v.idVerificacion1,
+            v.fechaVerificacion,
+            v.placaVehiculo,
+
+            f.idFiltro,
+            f.estado
+
+        FROM filtroPersonal f
+        INNER JOIN personal p ON f.idpersonal = p.idpersonal
+        LEFT JOIN verificacion1 v ON p.idpersonal = v.idpersonal
+        WHERE DATE(v.fechaVerificacion) >= '$fecha_inicio' 
+        AND DATE(v.fechaVerificacion) <= '$fecha_fin'
+        ORDER BY v.fechaVerificacion DESC;
+        ";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
 }

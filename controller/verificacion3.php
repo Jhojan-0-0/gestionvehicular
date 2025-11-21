@@ -58,8 +58,12 @@ class verificacion3 extends Controller
 	// Exportar listado como archivo Excel (HTML compatible)
 	public function export()
 	{
-		// Obtener datos
-		$resultado = $this->model->ListaFiltro();
+		// Obtener parámetros de fecha del formulario
+		$fecha_inicio = isset($_POST['fecha_inicio']) ? $_POST['fecha_inicio'] : date('Y-m-d');
+		$fecha_fin = isset($_POST['fecha_fin']) ? $_POST['fecha_fin'] : date('Y-m-d');
+
+		// Obtener datos con filtro de fechas
+		$resultado = $this->model->ListaFiltroConFechas($fecha_inicio, $fecha_fin);
 
 		// Intentar usar PhpSpreadsheet si está disponible
 		if (!class_exists('\\PhpOffice\\PhpSpreadsheet\\Spreadsheet')) {
