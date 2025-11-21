@@ -65,8 +65,7 @@
 				<th class="text-center">Fecha Registro Psicosomático</th>
 				<th class="text-center">Placa</th>
 				<th class="text-center">Hora</th>
-				<th class="text-center">Consulta de Placa</th>
-				<th class="text-center">Acciones</th>
+				<th class="text-center" colspan="2">Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -80,13 +79,13 @@
 						<td>".$row['catLicencia']."</td>
 						<td>".$row['fechaPsicosomatico']."</td>
 						<td>".$row['placaVehiculo']."</td>
-						<td>".$row['fechaVerificacion']."</td>
+						<td>".date("Y-m-d H:i:s", strtotime($row['fechaVerificacion']))."</td>
 						<td>
 							<a href='https://www.sat.gob.pe/consultas/placa' target='_blank' class='secondary button'>Consultar Placa</a>
 						</td>
 						<td>
-							<button class='secondary button'>Editar</button>
-						</td>
+                            <a href='".constant('URL')."verificacion1/detalle/".$row['idpersonal']."' class='success button'>Editar Placa</a>
+                        </td>
 						</tr>";
 			}
 			?>

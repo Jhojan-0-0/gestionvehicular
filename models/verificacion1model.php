@@ -68,29 +68,62 @@ class Verificacion1model extends Model
         }
     }
     public function ListaPersonalV()
-{
-    $sql = "SELECT 
-    p.idpersonal, 
-    p.dni, 
-    p.nombre, 
-    p.apellido, 
-    p.catLicencia, 
-    p.fechaPsicosomatico, 
-    v.idVerificacion1, 
-    v.fechaVerificacion, 
-    v.placaVehiculo 
-FROM 
-    personal p 
-INNER JOIN
-    verificacion1 v 
-ON 
-    p.idpersonal = v.idpersonal
-ORDER BY 
-    p.apellido ASC;
-";
+    {
+        $sql = "SELECT 
+        p.idpersonal, 
+        p.dni, 
+        p.nombre, 
+        p.apellido, 
+        p.catLicencia, 
+        p.fechaPsicosomatico, 
+        v.idVerificacion1, 
+        v.fechaVerificacion, 
+        v.placaVehiculo 
+    FROM 
+        personal p 
+    INNER JOIN
+        verificacion1 v 
+    ON 
+        p.idpersonal = v.idpersonal
+    ORDER BY 
+        p.apellido ASC;
+    ";
 
-    $res = $this->conn->ConsultaCon($sql);
-    return $res;
-}
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+    public function GetPersonalId($id)
+    {
+        $sql = "SELECT 
+                    p.idpersonal, 
+                    p.dni, 
+                    p.nombre, 
+                    p.apellido, 
+                    p.catLicencia, 
+                    p.fechaPsicosomatico, 
+                    v.idVerificacion1, 
+                    v.fechaVerificacion, 
+                    v.placaVehiculo 
+                FROM 
+                    personal p 
+                INNER JOIN
+                    verificacion1 v 
+                ON 
+                    p.idpersonal = v.idpersonal
+                WHERE 
+                    p.idpersonal = '$id'
+                ORDER BY 
+                    p.apellido ASC";
+
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
+    }
+
+    public function updateVerificacion1($idpersonal, $placaVehiculo)
+    {
+        $sql = "UPDATE `verificacion1` SET `placaVehiculo` = '$placaVehiculo' WHERE (`idpersonal` = '$idpersonal');";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }
 
 }

@@ -124,7 +124,7 @@
 				<th>Fecha Registro Psicosomático</th>
 				<th>Placa</th>
 				<th>Fecha de 1 Verificacion</th>
-				<th>Acciones</th>
+				<th>Estado</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -140,9 +140,6 @@
 						<td>".$row['placaVehiculo']."</td>
 						<td>".$row['fechaVerificacion']."</td>
 						<td>".$row['estado']."</td>
-						<td>
-							<button class='secondary button'>Editar</button>
-						</td>
 					</tr>";
 			}
 			?>	

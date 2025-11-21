@@ -6,34 +6,45 @@
     </div>
 <div class="grid-x grid-margin-x">
     <div class="cell grid-x small-12 medium-12 large-12 align-spaced">
-        <form action="<?php echo constant('URL') ?>registro/updatePersonal" method="POST" id="update-personal">
+        <form action="<?php echo constant('URL') ?>verificacion1/verificacion1Upd" method="POST" id="update-verificacion1">
         <div class="grid-x grid-margin-x callout shadow">
             <div class="cell large-12 grid-x text-center align-center">
-                <input type="text" name="idpersonal" value="<?php echo @$this->data['idpersonal']; ?>" id="idpersonal-update" hidden style="display:none">
+                <input type="text" name="idpersonal" value="<?php echo @$this->data['idpersonal']; ?>" id="idpersonal" hidden style="display:none">
             </div>
             <div class="cell large-6">
                 <label for="nombre">Nombres
-                    <input type="text" id="nombre" name="nombre" value="<?php echo @$this->data['nombre']; ?>">
+                    <input type="text" id="" name="" readonly value="<?php echo @$this->data['nombre']; ?>">
                 </label>
             </div>
             <div class="cell large-6">
                 <label for="apellido">Apellidos
-                    <input type="text" id="apellido" name="apellido" value="<?php echo @$this->data['apellido']; ?>">
+                    <input type="text" id="" name="" readonly value="<?php echo @$this->data['apellido']; ?>">
                 </label>
             </div>
             <div class="cell large-6">
                 <label for="dni">DNI
-                    <input type="number" id="dni" name="dni" value="<?php echo @$this->data['dni']; ?>">
+                    <input type="number" id="" name="" readonly value="<?php echo @$this->data['dni']; ?>">
                 </label>
             </div>
             <div class="cell large-6">
                 <label for="catLicencia">Categoría de Licencia
-                    <input type="text" id="catLicencia" name="catLicencia" value="<?php echo @$this->data['catLicencia']; ?>"onkeyup="this.value = this.value.toUpperCase();">
+                    <input type="text" id="" name="" readonly value="<?php echo @$this->data['catLicencia']; ?>">
                 </label>
             </div>
             <div class="cell large-6">
                 <label for="fechaPsicosomatico">Fecha de Registro del Psicosomático
-                    <input type="date" id="fechaPsicosomatico" name="fechaPsicosomatico" value="<?php echo @$this->data['fechaPsicosomatico']; ?>">
+                    <input type="date" id="" name="" readonly value="<?php echo @$this->data['fechaPsicosomatico']; ?>">
+                </label>
+            </div>
+            <div class="cell large-6">
+                <label for="placaVehiculo">Numero de Placa <input type="text" id="placaVehiculo" name="placaVehiculo"
+                value="<?php echo @$this->data['placaVehiculo']; ?>"
+                onkeyup="this.value = this.value.toUpperCase();">
+                </label>
+            </div>
+            <div class="cell large-6">
+                <label for="fechaVerificacion">Fecha de Primera Verificacion
+                    <input type="datetime" id="" name="" readonly value="<?php echo @$this->data['fechaVerificacion']; ?>">
                 </label>
             </div>
             <div class="cell large-6 text-center">
@@ -43,7 +54,7 @@
         </div>
     </form>
     <button class="hollow button warning" style="border-radius: 20px;" id="editar"><i class="fa fa-check-square"></i> Habilitar Edicion</button>
-    <a href="<?php echo constant('URL') ?>registro" class="hollow button alert" style="border-radius: 20px;"> <i class="fa-solid fa-rotate-left"></i> Volver</a>
+    <a href="<?php echo constant('URL') ?>verificacion1" class="hollow button alert" style="border-radius: 20px;"> <i class="fa-solid fa-rotate-left"></i> Volver</a>
     </div>
 </div>
 </div>
@@ -62,5 +73,5 @@
         } 
     });
 </script>
-<script src="<?php echo constant('URL') ?>public/js/registro.js"></script>
+<script src="<?php echo constant('URL') ?>public/js/verificacion1.js"></script>
 <?php require ('views/footer.php'); ?>

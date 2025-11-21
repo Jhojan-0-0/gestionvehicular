@@ -61,7 +61,31 @@ $(document).ready(function () {
   establecerFechaHora();
   // Adjuntar el handler de envío (asegura que el formulario tenga el comportamiento AJAX)
   RegistroVerificacion();
+  updateVerificacion1();
 });
+
+function updateVerificacion1 () {
+    $("#update-verificacion1").on("submit", function (event) {
+      event.preventDefault();
+      var formData = new FormData(this);
+      $.ajax({
+        url: $(this).attr("action"),
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert('Actualizacion ¡Exitoso!');
+            $("#update-verificacion1")[0].reset();
+            setTimeout(function () { location.reload(true); }, 300);
+          },
+          error: function (error) {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar el formulario.');
+          }
+      });
+    });
+  }
 
 function RegistroVerificacion() {
     $("#formVerificacion").on("submit", function (event) {

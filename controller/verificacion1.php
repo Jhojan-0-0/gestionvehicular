@@ -14,6 +14,12 @@ class verificacion1 extends Controller
         $this->view->data = $datos;
 		$this->view->Render('verificacion1/index');
 	}
+    function detalle($nparam = null)
+	{
+		$id = $nparam[0];
+		$this->view->data = $this->model->GetPersonalId($id);
+		$this->view->Render('verificacion1/detalle');
+	}
 
     function verificacionU()
 	{
@@ -87,6 +93,16 @@ class verificacion1 extends Controller
             exit;
         }
     }
-
+    public function verificacion1Upd(){
+		
+		$idpersonal = $_POST['idpersonal'];
+		$placaVehiculo = $_POST['placaVehiculo'];
+		if($this->model->updateVerificacion1($idpersonal, $placaVehiculo))
+		{
+			echo "EXITO AL ACTUALIZAR";
+		}else{
+			echo "ERROR AL ACTUALIZAR";
+		}	
+	}
 
 }
